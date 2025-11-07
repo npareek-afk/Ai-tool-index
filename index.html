@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tool Reference Guide</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9; /* Soft light background */
+        }
+        /* Custom Tailwind Configuration */
+        .gradient-bg {
+            /* DEEP VIOLET/ORANGE SUNSET THEME (#371e7d to #e36f4d) */
+            background: linear-gradient(135deg, #371e7d 0%, #e36f4d 100%); 
+        }
+        .text-accent {
+            /* AMBER/GOLD ACCENT (Updated Color) */
+            color: #FFC000; 
+            text-shadow: 0 0 5px rgba(255, 192, 0, 0.5); /* Subtle glow effect */
+        }
+        .table-header {
+            background-color: #e5e7eb; /* Light gray for headers */
+        }
+        .table-row-odd {
+            background-color: #ffffff;
+        }
+        .table-row-even {
+            background-color: #f9fafb;
+        }
+        /* Style for the collapsible summary/header */
+        details.tool-category > summary {
+            list-style: none; /* Hide default triangle */
+            cursor: pointer;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s ease-in-out;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            font-weight: 600;
+        }
+        details.tool-category > summary:hover {
+            background-color: #f3f4f6;
+        }
+        details.tool-category[open] > summary {
+            /* Very pale blue background to indicate openness */
+            background-color: #e6f0ff; 
+            border-color: #3B82F6; /* Tailwind Blue-500 border (Updated Color) */
+            color: #0c4a6e; /* Darker text */
+        }
+        /* Custom arrow icon for summary */
+        details.tool-category > summary::before {
+            content: '▶';
+            display: inline-block;
+            margin-right: 1rem;
+            transition: transform 0.2s;
+            font-size: 0.8rem;
+            color: #3B82F6; /* Solid Blue Accent for arrow (Updated Color) */
+        }
+        details.tool-category[open] > summary::before {
+            transform: rotate(90deg);
+        }
+        /* Style for placeholder links */
+        .placeholder-link {
+            color: #9ca3af; /* Gray text for unavailable links */
+            cursor: default;
+            pointer-events: none;
+            text-decoration: none;
+        }
+
+        /* PULSING LINK STYLES */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 192, 0, 0.4); /* Amber glow */
+            }
+            50% {
+                box-shadow: 0 0 10px 5px rgba(255, 192, 0, 0.8);
+            }
+        }
+
+        .pulsing-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded pill shape */
+            background-color: #FFC000; /* Amber background */
+            color: #371e7d; /* Dark text from the gradient start */
+            font-weight: 800;
+            text-decoration: none !important;
+            animation: pulse-glow 2s infinite;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .pulsing-link:hover {
+            box-shadow: 0 0 15px 8px rgba(255, 192, 0, 1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="gradient-bg text-white p-6 rounded-xl shadow-2xl mb-8">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            
+            <!-- Text Content -->
+            <div class="md:w-3/4 mb-6 md:mb-0">
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-2 leading-tight">AI Tool Reference Guide</h1>
+                <h2 class="text-xl md:text-2xl font-light text-gray-200 mb-6">
+                    A curated guide to leading Generative AI tools, based on the insights from:
+                </h2>
+                
+                <!-- Book Title and Pulsing Link -->
+                <div class="flex items-center space-x-4">
+                    <p class="text-2xl font-semibold text-gray-100">Journey Through AI Land</p>
+                    <!-- I used '#' as a placeholder for the book link. Update this when you have the actual URL! -->
+                    <a href="#" class="pulsing-link text-sm md:text-base">
+                        Get the Book!
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book Cover Image -->
+            <div class="md:w-1/4 flex justify-center md:justify-end">
+                <!-- Image source updated to reference the uploaded file name -->
+                <img 
+                    src="Coverpage-Journey Through AI Land-Final 1.jpg" 
+                    onerror="this.onerror=null;this.src='https://placehold.co/180x270/e36f4d/371e7d?text=Image+Load+Error'"
+                    alt="Cover of the book Journey Through AI Land" 
+                    class="w-32 md:w-44 h-auto rounded-lg shadow-2xl transform hover:scale-105 transition duration-300 border-4 border-amber-400"
+                >
+            </div>
+        </div>
+        
+    </header>
+
+    <!-- Tools Container -->
+    <main class="max-w-6xl mx-auto">
+
+        <div id="tool-categories" class="space-y-4">
+            <!-- 1. Design & Visual Creation -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden" open>
+                <summary class="text-xl">🎨 Design & Visual Creation</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">DALL·E</td>
+                                <td class="px-4 py-3 text-gray-600">Creates images from text descriptions.</td>
+                                <td class="px-4 py-3"><a href="https://openai.com/dall-e" target="_blank" class="text-accent hover:underline font-medium">openai.com/dall-e</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Midjourney</td>
+                                <td class="px-4 py-3 text-gray-600">Generates artistic, high-quality visuals.</td>
+                                <td class="px-4 py-3"><a href="https://midjourney.com" target="_blank" class="text-accent hover:underline font-medium">midjourney.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Leonardo AI</td>
+                                <td class="px-4 py-3 text-gray-600">Concept art and game visualization.</td>
+                                <td class="px-4 py-3"><a href="https://leonardo.ai" target="_blank" class="text-accent hover:underline font-medium">leonardo.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Canva Magic Studio</td>
+                                <td class="px-4 py-3 text-gray-600">AI design for layouts and presentations.</td>
+                                <td class="px-4 py-3"><a href="https://canva.com" target="_blank" class="text-accent hover:underline font-medium">canva.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Adobe Firefly</td>
+                                <td class="px-4 py-3 text-gray-600">Image generation within Creative Cloud.</td>
+                                <td class="px-4 py-3"><a href="https://adobe.com/firefly" target="_blank" class="text-accent hover:underline font-medium">adobe.com/firefly</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 2. Writing & Communication -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">✍️ Writing & Communication</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">ChatGPT</td>
+                                <td class="px-4 py-3 text-gray-600">Conversational assistant for writing and ideas.</td>
+                                <td class="px-4 py-3"><a href="https://chat.openai.com" target="_blank" class="text-accent hover:underline font-medium">chat.openai.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Claude</td>
+                                <td class="px-4 py-3 text-gray-600">Long-context reasoning and document analysis.</td>
+                                <td class="px-4 py-3"><a href="https://claude.ai" target="_blank" class="text-accent hover:underline font-medium">claude.ai</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Gemini</td>
+                                <td class="px-4 py-3 text-gray-600">Google’s AI for writing and data tasks.</td>
+                                <td class="px-4 py-3"><a href="https://gemini.google.com" target="_blank" class="text-accent hover:underline font-medium">gemini.google.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Jasper</td>
+                                <td class="px-4 py-3 text-gray-600">Generates marketing and advertising copy.</td>
+                                <td class="px-4 py-3"><a href="https://jasper.ai" target="_blank" class="text-accent hover:underline font-medium">jasper.ai</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Copy.ai</td>
+                                <td class="px-4 py-3 text-gray-600">Creates blogs, emails, and product texts.</td>
+                                <td class="px-4 py-3"><a href="https://copy.ai" target="_blank" class="text-accent hover:underline font-medium">copy.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">GrammarlyGO</td>
+                                <td class="px-4 py-3 text-gray-600">Suggests rewrites and tone adjustments.</td>
+                                <td class="px-4 py-3"><a href="https://grammarly.com" target="_blank" class="text-accent hover:underline font-medium">grammarly.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Wordtune</td>
+                                <td class="px-4 py-3 text-gray-600">Refines sentences for clarity and flow.</td>
+                                <td class="px-4 py-3"><a href="https://wordtune.com" target="_blank" class="text-accent hover:underline font-medium">wordtune.com</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 3. Music and Audio -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">🎧 Music and Audio</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Suno</td>
+                                <td class="px-4 py-3 text-gray-600">Generates complete songs from text prompts.</td>
+                                <td class="px-4 py-3"><a href="https://suno.ai" target="_blank" class="text-accent hover:underline font-medium">suno.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Udio</td>
+                                <td class="px-4 py-3 text-gray-600">Composes music by mood and genre.</td>
+                                <td class="px-4 py-3"><a href="https://udio.com" target="_blank" class="text-accent hover:underline font-medium">udio.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">AIVA</td>
+                                <td class="px-4 py-3 text-gray-600">Creates cinematic and classical music.</td>
+                                <td class="px-4 py-3"><a href="https://aiva.ai" target="_blank" class="text-accent hover:underline font-medium">aiva.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Mubert</td>
+                                <td class="px-4 py-3 text-gray-600">Produces copyright-safe background music.</td>
+                                <td class="px-4 py-3"><a href="https://mubert.com" target="_blank" class="text-accent hover:underline font-medium">mubert.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">ElevenLabs</td>
+                                <td class="px-4 py-3 text-gray-600">Generates realistic voiceovers and speech.</td>
+                                <td class="px-4 py-3"><a href="https://elevenlabs.io" target="_blank" class="text-accent hover:underline font-medium">elevenlabs.io</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Play.ht</td>
+                                <td class="px-4 py-3 text-gray-600">Converts text into audio narration.</td>
+                                <td class="px-4 py-3"><a href="https://play.ht" target="_blank" class="text-accent hover:underline font-medium">play.ht</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 4. Video and Animation -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">🎬 Video and Animation</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Runway ML</td>
+                                <td class="px-4 py-3 text-gray-600">Generates and edits AI videos.</td>
+                                <td class="px-4 py-3"><a href="https://runwayml.com" target="_blank" class="text-accent hover:underline font-medium">runwayml.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Pika Labs</td>
+                                <td class="px-4 py-3 text-gray-600">Creates videos from text or storyboards.</td>
+                                <td class="px-4 py-3"><a href="https://pika.art" target="_blank" class="text-accent hover:underline font-medium">pika.art</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Kaiber</td>
+                                <td class="px-4 py-3 text-gray-600">Animates still images into motion.</td>
+                                <td class="px-4 py-3"><a href="https://kaiber.ai" target="_blank" class="text-accent hover:underline font-medium">kaiber.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Synthesia</td>
+                                <td class="px-4 py-3 text-gray-600">Talking avatars for education and training.</td>
+                                <td class="px-4 py-3"><a href="https://synthesia.io" target="_blank" class="text-accent hover:underline font-medium">synthesia.io</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">HeyGen</td>
+                                <td class="px-4 py-3 text-gray-600">Custom avatars and video presenters.</td>
+                                <td class="px-4 py-3"><a href="https://heygen.com" target="_blank" class="text-accent hover:underline font-medium">heygen.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Nano Banana</td>
+                                <td class="px-4 py-3 text-gray-600">On-device AI for image and video creation.</td>
+                                <td class="px-4 py-3"><span class="placeholder-link">Placeholder Link</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 5. Coding and Development -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">💻 Coding and Development</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">GitHub Copilot</td>
+                                <td class="px-4 py-3 text-gray-600">Suggests code while you type.</td>
+                                <td class="px-4 py-3"><a href="https://github.com/features/copilot" target="_blank" class="text-accent hover:underline font-medium">github.com/features/copilot</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Replit Ghostwriter</td>
+                                <td class="px-4 py-3 text-gray-600">In-IDE AI coding assistant.</td>
+                                <td class="px-4 py-3"><a href="https://replit.com" target="_blank" class="text-accent hover:underline font-medium">replit.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Cursor</td>
+                                <td class="px-4 py-3 text-gray-600">AI-first code editor and explainer.</td>
+                                <td class="px-4 py-3"><a href="https://cursor.so" target="_blank" class="text-accent hover:underline font-medium">cursor.so</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Gemini Code Assist</td>
+                                <td class="px-4 py-3 text-gray-600">Google’s coding helper for Cloud tools.</td>
+                                <td class="px-4 py-3"><span class="placeholder-link">Google Workspace AI</span></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Claude</td>
+                                <td class="px-4 py-3 text-gray-600">Code reasoning and debugging support.</td>
+                                <td class="px-4 py-3"><a href="https://claude.ai" target="_blank" class="text-accent hover:underline font-medium">claude.ai</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 6. Productivity and Business -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">📊 Productivity and Business</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Microsoft Copilot</td>
+                                <td class="px-4 py-3 text-gray-600">Automates tasks in Office apps.</td>
+                                <td class="px-4 py-3"><a href="https://microsoft.com/copilot" target="_blank" class="text-accent hover:underline font-medium">microsoft.com/copilot</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Google Duet AI</td>
+                                <td class="px-4 py-3 text-gray-600">AI in Docs, Sheets, and Slides.</td>
+                                <td class="px-4 py-3"><a href="https://workspace.google.com/duet-ai" target="_blank" class="text-accent hover:underline font-medium">workspace.google.com/duet-ai</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Notion AI</td>
+                                <td class="px-4 py-3 text-gray-600">Summarizes notes and plans tasks.</td>
+                                <td class="px-4 py-3"><a href="https://notion.so" target="_blank" class="text-accent hover:underline font-medium">notion.so</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">ChatGPT Teams</td>
+                                <td class="px-4 py-3 text-gray-600">Secure collaboration with AI chat.</td>
+                                <td class="px-4 py-3"><a href="https://openai.com" target="_blank" class="text-accent hover:underline font-medium">openai.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Gemini Workspace</td>
+                                <td class="px-4 py-3 text-gray-600">Integrates AI across Gmail and Docs.</td>
+                                <td class="px-4 py-3"><a href="https://gemini.google.com" target="_blank" class="text-accent hover:underline font-medium">gemini.google.com</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 7. Education and Learning -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">📚 Education and Learning</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Khanmigo</td>
+                                <td class="px-4 py-3 text-gray-600">AI tutor by Khan Academy.</td>
+                                <td class="px-4 py-3"><a href="https://khanacademy.org" target="_blank" class="text-accent hover:underline font-medium">khanacademy.org</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Quizlet Q-Chat</td>
+                                <td class="px-4 py-3 text-gray-600">Practice and quiz AI companion.</td>
+                                <td class="px-4 py-3"><a href="https://quizlet.com" target="_blank" class="text-accent hover:underline font-medium">quizlet.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Socratic</td>
+                                <td class="px-4 py-3 text-gray-600">Homework help with step-by-step guidance.</td>
+                                <td class="px-4 py-3"><a href="https://socratic.org" target="_blank" class="text-accent hover:underline font-medium">socratic.org</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Perplexity AI</td>
+                                <td class="px-4 py-3 text-gray-600">Conversational research assistant.</td>
+                                <td class="px-4 py-3"><a href="https://perplexity.ai" target="_blank" class="text-accent hover:underline font-medium">perplexity.ai</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Gemini Education</td>
+                                <td class="px-4 py-3 text-gray-600">Personalized teaching and class content.</td>
+                                <td class="px-4 py-3"><a href="https://gemini.google.com" target="_blank" class="text-accent hover:underline font-medium">gemini.google.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">ChatGPT Edu</td>
+                                <td class="px-4 py-3 text-gray-600">Academic use for learning and feedback.</td>
+                                <td class="px-4 py-3"><a href="https://openai.com/edu" target="_blank" class="text-accent hover:underline font-medium">openai.com/edu</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 8. Health and Wellness -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">🧡 Health and Wellness</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Ada Health</td>
+                                <td class="px-4 py-3 text-gray-600">Symptom checker and insights.</td>
+                                <td class="px-4 py-3"><a href="https://ada.com" target="_blank" class="text-accent hover:underline font-medium">ada.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">HealthGPT</td>
+                                <td class="px-4 py-3 text-gray-600">Lifestyle and health information support.</td>
+                                <td class="px-4 py-3"><span class="placeholder-link">Placeholder Link</span></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Fitbit AI Insights</td>
+                                <td class="px-4 py-3 text-gray-600">Analyzes fitness and recovery data.</td>
+                                <td class="px-4 py-3"><a href="https://fitbit.com" target="_blank" class="text-accent hover:underline font-medium">fitbit.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">WHOOP Coach</td>
+                                <td class="px-4 py-3 text-gray-600">Suggests training based on metrics.</td>
+                                <td class="px-4 py-3"><a href="https://whoop.com" target="_blank" class="text-accent hover:underline font-medium">whoop.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Woebot</td>
+                                <td class="px-4 py-3 text-gray-600">Mental-health chat support.</td>
+                                <td class="px-4 py-3"><a href="https://woebothealth.com" target="_blank" class="text-accent hover:underline font-medium">woebothealth.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Wysa</td>
+                                <td class="px-4 py-3 text-gray-600">Emotional wellness assistant.</td>
+                                <td class="px-4 py-3"><a href="https://wysa.io" target="_blank" class="text-accent hover:underline font-medium">wysa.io</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <!-- 9. Entertainment and Storytelling -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden">
+                <summary class="text-xl">✨ Entertainment and Storytelling</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Inworld AI</td>
+                                <td class="px-4 py-3 text-gray-600">Builds interactive game characters.</td>
+                                <td class="px-4 py-3"><a href="https://inworld.ai" target="_blank" class="text-accent hover:underline font-medium">inworld.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-600">NovelAI</td>
+                                <td class="px-4 py-3 text-gray-600">Generates fiction and scenes for writers.</td>
+                                <td class="px-4 py-3"><a href="https://novelai.net" target="_blank" class="text-accent hover:underline font-medium">novelai.net</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Sudowrite</td>
+                                <td class="px-4 py-3 text-gray-600">Assists authors with editing and inspiration.</td>
+                                <td class="px-4 py-3"><a href="https://sudowrite.com" target="_blank" class="text-accent hover:underline font-medium">sudowrite.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Gemini Advanced</td>
+                                <td class="px-4 py-3 text-gray-600">Long-form reasoning and creative ideation.</td>
+                                <td class="px-4 py-3"><a href="https://gemini.google.com" target="_blank" class="text-accent hover:underline font-medium">gemini.google.com</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+    </main>
+
+    <!-- Footer Note -->
+    <footer class="mt-12 text-center text-sm text-gray-500">
+        <p class="border-t pt-4">Note: Links marked with 'Placeholder Link' were not explicitly provided in the source document.</p>
+    </footer>
+
+</body>
+</html>
