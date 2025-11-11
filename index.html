@@ -50,7 +50,7 @@
         details.tool-category[open] > summary {
             /* Very pale blue background to indicate openness */
             background-color: #e6f0ff; 
-            border-color: #3B82F6; /* Tailwind Blue-500 border (Updated Color) */
+            border-color: #3B82F6; /* Tailwind Blue-500 border */
             color: #0c4a6e; /* Darker text */
         }
         /* Custom arrow icon for summary */
@@ -60,12 +60,12 @@
             margin-right: 1rem;
             transition: transform 0.2s;
             font-size: 0.8rem;
-            color: #3B82F6; /* Solid Blue Accent for arrow (Updated Color) */
+            color: #3B82F6; /* Solid Blue Accent for arrow */
         }
         details.tool-category[open] > summary::before {
             transform: rotate(90deg);
         }
-        /* Style for placeholder links */
+        /* Style for placeholder links - kept just in case, but no longer used for the Google links */
         .placeholder-link {
             color: #9ca3af; /* Gray text for unavailable links */
             cursor: default;
@@ -112,22 +112,13 @@
             <div class="md:w-3/4 mb-6 md:mb-0">
                 <h1 class="text-3xl md:text-5xl font-extrabold mb-2 leading-tight">AI Tool Reference Guide</h1>
                 <h2 class="text-xl md:text-2xl font-light text-gray-200 mb-6">
-                    A curated guide to leading Generative AI tools, based on the insights from:
+                    A curated guide to leading Generative AI tools, based on the insights from Book: <Strong>Journey Through AI Land</Strong>
                 </h2>
                 
-                <!-- Book Title and Pulsing Link -->
-                <div class="flex items-center space-x-4">
-                    <p class="text-2xl font-semibold text-gray-100">Journey Through AI Land</p>
-                    <!-- I used '#' as a placeholder for the book link. Update this when you have the actual URL! -->
-                    <a href="#" class="pulsing-link text-sm md:text-base">
-                        Get the Book!
-                    </a>
-                </div>
             </div>
 
-            <!-- Book Cover Image -->
+            <!-- Book Cover Image (Updated file name) -->
             <div class="md:w-1/4 flex justify-center md:justify-end">
-                <!-- Image source updated to reference the uploaded file name -->
                 <img 
                     src="AI Land Cover Page Final.png" 
                     onerror="this.onerror=null;this.src='https://placehold.co/180x270/e36f4d/371e7d?text=Image+Load+Error'"
@@ -138,11 +129,21 @@
         </div>
         
     </header>
+    <main class="max-w-6xl mx-auto">
+    <div id="from-book-or-direct" class="space-y-4">
+    Came here from the book? Welcome!</br></br>
 
+<i>If you found this page directly, we invite you to explore the book - it takes a simple, story-driven approach to explain the building blocks of AI, how they work together, and how the field has evolved.</i> </br></br>
+
+<b>You can find the book link at the bottom of this page.</b></br></br>
+    </div>
+
+</main>
     <!-- Tools Container -->
     <main class="max-w-6xl mx-auto">
 
         <div id="tool-categories" class="space-y-4">
+            
             <!-- 1. Design & Visual Creation -->
             <details class="tool-category rounded-xl shadow-md overflow-hidden" open>
                 <summary class="text-xl">🎨 Design & Visual Creation</summary>
@@ -328,14 +329,82 @@
                             <tr class="table-row-even">
                                 <td class="px-4 py-3 font-medium text-gray-900">Nano Banana</td>
                                 <td class="px-4 py-3 text-gray-600">On-device AI for image and video creation.</td>
-                                <td class="px-4 py-3"><span class="placeholder-link">Placeholder Link</span></td>
+                                <td class="px-4 py-3"><a href="https://cloud.google.com/ai" target="_blank" class="text-accent hover:underline font-medium">Google Cloud AI</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </details>
-
-            <!-- 5. Coding and Development -->
+            
+            <!-- 5. Autonomous Agents & Frameworks (NEW COMPLETE SECTION) -->
+            <details class="tool-category rounded-xl shadow-md overflow-hidden" open>
+                <summary class="text-xl">🤖 Autonomous Agents & Frameworks</summary>
+                <div class="p-4 bg-white border border-t-0 border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-inner">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-1/5">Tool</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">What It Does</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider w-2/5">Website / Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 text-sm">
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">AutoGPT</td>
+                                <td class="px-4 py-3 text-gray-600">Open-source agent that can plan and execute multi-step goals using GPT models.</td>
+                                <td class="px-4 py-3"><a href="https://github.com/Torantulino/Auto-GPT" target="_blank" class="text-accent hover:underline font-medium">github.com/Torantulino/Auto-GPT</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Devin AI</td>
+                                <td class="px-4 py-3 text-gray-600">Autonomous “software engineer” that codes, tests, and deploys projects independently.</td>
+                                <td class="px-4 py-3"><a href="https://cognition-labs.com" target="_blank" class="text-accent hover:underline font-medium">cognition-labs.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">n8n (AI Agents)</td>
+                                <td class="px-4 py-3 text-gray-600">No-code automation platform where AI and apps connect through workflows and MCP-based agents.</td>
+                                <td class="px-4 py-3"><a href="https://n8n.io" target="_blank" class="text-accent hover:underline font-medium">n8n.io</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">CrewAI</td>
+                                <td class="px-4 py-3 text-gray-600">Framework for managing multiple collaborating AI agents that divide and complete tasks together.</td>
+                                <td class="px-4 py-3"><a href="https://crewai.com" target="_blank" class="text-accent hover:underline font-medium">crewai.com</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">LangChain Agents</td>
+                                <td class="px-4 py-3 text-gray-600">Toolset that allows language models to reason, access APIs, and use real-world tools safely.</td>
+                                <td class="px-4 py-3"><a href="https://langchain.com" target="_blank" class="text-accent hover:underline font-medium">langchain.com</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">LlamaIndex</td>
+                                <td class="px-4 py-3 text-gray-600">Framework that lets AI retrieve and use external data intelligently — foundation for RAG agents.</td>
+                                <td class="px-4 py-3"><a href="https://llamaindex.ai" target="_blank" class="text-accent hover:underline font-medium">llamaindex.ai</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Cursor AI</td>
+                                <td class="px-4 py-3 text-gray-600">Smart coding assistant that writes, edits, and refactors code contextually — a developer’s co-pilot.</td>
+                                <td class="px-4 py-3"><a href="https://cursor.sh" target="_blank" class="text-accent hover:underline font-medium">cursor.sh</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">Model Context Protocol (MCP)</td>
+                                <td class="px-4 py-3 text-gray-600">Open standard that allows AI tools and agents to discover, connect, and collaborate securely.</td>
+                                <td class="px-4 py-3"><a href="https://modelcontextprotocol.io" target="_blank" class="text-accent hover:underline font-medium">modelcontextprotocol.io</a></td>
+                            </tr>
+                            <tr class="table-row-odd">
+                                <td class="px-4 py-3 font-medium text-gray-900">Adept ACT-1</td>
+                                <td class="px-4 py-3 text-gray-600">Experimental agent that performs software actions directly through natural language commands.</td>
+                                <td class="px-4 py-3"><a href="https://adept.ai" target="_blank" class="text-accent hover:underline font-medium">adept.ai</a></td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="px-4 py-3 font-medium text-gray-900">SuperAGI</td>
+                                <td class="px-4 py-3 text-gray-600">Developer framework for building and deploying fully autonomous, goal-driven AI agents.</td>
+                                <td class="px-4 py-3"><a href="https://superagi.com" target="_blank" class="text-accent hover:underline font-medium">superagi.com</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+            
+            <!-- 6. Coding and Development (Updated after Cursor AI moved to Agents) -->
             <details class="tool-category rounded-xl shadow-md overflow-hidden">
                 <summary class="text-xl">💻 Coding and Development</summary>
                 <div class="p-4 bg-white border border-t-0 border-gray-200">
@@ -359,16 +428,11 @@
                                 <td class="px-4 py-3"><a href="https://replit.com" target="_blank" class="text-accent hover:underline font-medium">replit.com</a></td>
                             </tr>
                             <tr class="table-row-odd">
-                                <td class="px-4 py-3 font-medium text-gray-900">Cursor</td>
-                                <td class="px-4 py-3 text-gray-600">AI-first code editor and explainer.</td>
-                                <td class="px-4 py-3"><a href="https://cursor.so" target="_blank" class="text-accent hover:underline font-medium">cursor.so</a></td>
-                            </tr>
-                            <tr class="table-row-even">
                                 <td class="px-4 py-3 font-medium text-gray-900">Gemini Code Assist</td>
                                 <td class="px-4 py-3 text-gray-600">Google’s coding helper for Cloud tools.</td>
-                                <td class="px-4 py-3"><span class="placeholder-link">Google Workspace AI</span></td>
+                                <td class="px-4 py-3"><a href="https://cloud.google.com/" target="_blank" class="text-accent hover:underline font-medium">Google Cloud AI</a></td>
                             </tr>
-                            <tr class="table-row-odd">
+                            <tr class="table-row-even">
                                 <td class="px-4 py-3 font-medium text-gray-900">Claude</td>
                                 <td class="px-4 py-3 text-gray-600">Code reasoning and debugging support.</td>
                                 <td class="px-4 py-3"><a href="https://claude.ai" target="_blank" class="text-accent hover:underline font-medium">claude.ai</a></td>
@@ -378,7 +442,7 @@
                 </div>
             </details>
 
-            <!-- 6. Productivity and Business -->
+            <!-- 7. Productivity and Business -->
             <details class="tool-category rounded-xl shadow-md overflow-hidden">
                 <summary class="text-xl">📊 Productivity and Business</summary>
                 <div class="p-4 bg-white border border-t-0 border-gray-200">
@@ -421,7 +485,7 @@
                 </div>
             </details>
 
-            <!-- 7. Education and Learning -->
+            <!-- 8. Education and Learning -->
             <details class="tool-category rounded-xl shadow-md overflow-hidden">
                 <summary class="text-xl">📚 Education and Learning</summary>
                 <div class="p-4 bg-white border border-t-0 border-gray-200">
@@ -469,7 +533,7 @@
                 </div>
             </details>
 
-            <!-- 8. Health and Wellness -->
+            <!-- 9. Health and Wellness -->
             <details class="tool-category rounded-xl shadow-md overflow-hidden">
                 <summary class="text-xl">🧡 Health and Wellness</summary>
                 <div class="p-4 bg-white border border-t-0 border-gray-200">
@@ -488,26 +552,21 @@
                                 <td class="px-4 py-3"><a href="https://ada.com" target="_blank" class="text-accent hover:underline font-medium">ada.com</a></td>
                             </tr>
                             <tr class="table-row-even">
-                                <td class="px-4 py-3 font-medium text-gray-900">HealthGPT</td>
-                                <td class="px-4 py-3 text-gray-600">Lifestyle and health information support.</td>
-                                <td class="px-4 py-3"><span class="placeholder-link">Placeholder Link</span></td>
-                            </tr>
-                            <tr class="table-row-odd">
                                 <td class="px-4 py-3 font-medium text-gray-900">Fitbit AI Insights</td>
                                 <td class="px-4 py-3 text-gray-600">Analyzes fitness and recovery data.</td>
                                 <td class="px-4 py-3"><a href="https://fitbit.com" target="_blank" class="text-accent hover:underline font-medium">fitbit.com</a></td>
                             </tr>
-                            <tr class="table-row-even">
+                            <tr class="table-row-odd">
                                 <td class="px-4 py-3 font-medium text-gray-900">WHOOP Coach</td>
                                 <td class="px-4 py-3 text-gray-600">Suggests training based on metrics.</td>
                                 <td class="px-4 py-3"><a href="https://whoop.com" target="_blank" class="text-accent hover:underline font-medium">whoop.com</a></td>
                             </tr>
-                            <tr class="table-row-odd">
+                            <tr class="table-row-even">
                                 <td class="px-4 py-3 font-medium text-gray-900">Woebot</td>
                                 <td class="px-4 py-3 text-gray-600">Mental-health chat support.</td>
                                 <td class="px-4 py-3"><a href="https://woebothealth.com" target="_blank" class="text-accent hover:underline font-medium">woebothealth.com</a></td>
                             </tr>
-                            <tr class="table-row-even">
+                            <tr class="table-row-odd">
                                 <td class="px-4 py-3 font-medium text-gray-900">Wysa</td>
                                 <td class="px-4 py-3 text-gray-600">Emotional wellness assistant.</td>
                                 <td class="px-4 py-3"><a href="https://wysa.io" target="_blank" class="text-accent hover:underline font-medium">wysa.io</a></td>
@@ -517,7 +576,7 @@
                 </div>
             </details>
 
-            <!-- 9. Entertainment and Storytelling -->
+            <!-- 10. Entertainment and Storytelling -->
             <details class="tool-category rounded-xl shadow-md overflow-hidden">
                 <summary class="text-xl">✨ Entertainment and Storytelling</summary>
                 <div class="p-4 bg-white border border-t-0 border-gray-200">
@@ -536,7 +595,7 @@
                                 <td class="px-4 py-3"><a href="https://inworld.ai" target="_blank" class="text-accent hover:underline font-medium">inworld.ai</a></td>
                             </tr>
                             <tr class="table-row-even">
-                                <td class="px-4 py-3 font-medium text-gray-600">NovelAI</td>
+                                <td class="px-4 py-3 font-medium text-gray-900">NovelAI</td>
                                 <td class="px-4 py-3 text-gray-600">Generates fiction and scenes for writers.</td>
                                 <td class="px-4 py-3"><a href="https://novelai.net" target="_blank" class="text-accent hover:underline font-medium">novelai.net</a></td>
                             </tr>
@@ -560,7 +619,12 @@
 
     <!-- Footer Note -->
     <footer class="mt-12 text-center text-sm text-gray-500">
-        <p class="border-t pt-4">Note: Links marked with 'Placeholder Link' were not explicitly provided in the source document.</p>
+        <p class="border-t pt-4">
+             <a href="#" class="pulsing-link text-sm md:text-base">
+                        Get the Book Here!
+                    </a>
+            </p>
+   
     </footer>
 
 </body>
